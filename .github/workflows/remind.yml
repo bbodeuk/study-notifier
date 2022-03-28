@@ -1,0 +1,24 @@
+name: Study reminder webhook
+
+on:
+    schedule:
+        - cron: "00 9 * * WED"
+    workflow_dispatch:
+
+jobs:
+    remind:
+        name: Study reminder webhook
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - uses: actions/setup-node@v3
+              with:
+                  node-version: "16"
+                  check-latest: true
+            - name: Install dependencies
+              run: npm ci
+            - name: Run script
+              run: npm run remind
+              env:
+                  WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
+                  DISCORD_ID: ${{ secrets.DISCORD_ID }}
