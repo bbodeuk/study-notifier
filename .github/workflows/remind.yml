@@ -1,8 +1,6 @@
 name: Study reminder webhook
 
 on:
-    schedule:
-        - cron: "00 9 * * WED"
     workflow_dispatch:
 
 jobs:
